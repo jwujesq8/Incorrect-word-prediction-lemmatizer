@@ -1,0 +1,63 @@
+Incorrect word prediction/lemmatizer
+
+
+
+ -> Overview
+
+"Incorrect word prediction/lemmatizer"
+This Python script provides functionality for correcting and lemmatizing incorrect words using two different techniques: Levenshtein distance and the Spello package. The script allows users to interactively input incorrect words and receive suggested corrections.
+
+
+
+ -> Dependencies
+
+Python 3.x
+spello package (install using pip install spello)
+nltk package (install using pip install nltk)
+    nltk.download('wordnet') (It's commented (2rows) on the top of the customLemmatizer.py file. You need to uncomment this before the first running)
+
+
+
+ -> Usage
+
+Before running you need to download a train data (english) and to change a path to the train data file in the 49-50 lines in the run.py file.
+    Link for the train data (english): https://pypi.org/project/spello/#:~:text=md5%20hash-,en,ec55760a7e25846bafe90b0c9ce9b09f,-en
+You can run this script from the console:
+    python run.py (+optionally the word you want to check)
+There is 2 options to check the word:
+    1. Levenshtein distance
+    2. Spello package
+After providing the number of option you will get the correct form (if it exists) Of the word that was entered through the console or you will be asked for entering the word.
+
+
+
+ -> Code structure and functionality
+
+* run.py
+Main script file containing the implementation:
+    - def by_levenshtein_distance(lemmatizer):
+        To use the Levenshtein distance technique, run the script and choose option 1 when prompted. You can provide an incorrect word as a command-line argument or enter words interactively. The script will suggest corrected words based on Levenshtein distance.
+    - def by_spello(sp):
+        To use the Spello package technique, run the script and choose option 2 when prompted. The script will load a pre-trained model for English spell correction. You can provide an incorrect word as a command-line argument or enter words interactively. The script will suggest corrected words using the Spello package.
+
+* customLemmatizer.py
+    - def guess_word(self, word):
+        the main function for all actions to find the correct form of the word
+    - def find_similar_word(self, word):
+        find the the right correct form for your word among the candidates
+    - def generate_candidates(self, word):
+        generate candidates thanks the rule that is based on the keyboard errors
+    - def levenshtein_distance(self, word1, word2):
+        count a levenshtein distance for the all candidates and return the last significant index (matrix[len1, len2])
+
+* color.py
+    define main colors for the script text
+
+
+
+Notes
+
+	Alena Zhukouskaya
+	S473618
+
+
